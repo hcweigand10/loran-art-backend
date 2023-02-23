@@ -31,7 +31,7 @@ const getSingleCategoryByName = async (req, res) => {
   try {
     const singleCategory = await Category.findOne({
       where: {
-        name: req.params.name.charAt(0).toUpperCase + req.params.name.slice(1),
+        name: req.params.name,
       },
       include: [{ model: Art }],
     });
