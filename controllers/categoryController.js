@@ -12,10 +12,9 @@ const getAllCategory = async (req, res) => {
 };
 
 const getSingleCategoryById = async (req, res) => {
-  console.log("get single category request");
   try {
     const singleCategory = await Category.findByPk(req.params.id, {
-      include: Art,
+      include: [{ model: Art }],
     });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this id!" });
@@ -29,20 +28,18 @@ const getSingleCategoryById = async (req, res) => {
 };
 
 const getSingleCategoryByName = async (req, res) => {
-  console.log("get single category request");
   try {
-    const singleCategory = await Category.findOne(
-      {
-        where: {
-          name: req.params.name,
-        },
+    const singleCategory = await Category.findOne({
+      where: {
+        name: req.params.name,
       },
-      { include: Art }
-    );
+      include: [{ model: Art }],
+    });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this name!" });
       return;
     }
+    console.log(singleCategory);
     res.status(200).json(singleCategory);
   } catch (err) {
     console.log(err);

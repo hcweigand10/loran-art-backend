@@ -4,7 +4,7 @@ const {getAllCategory, getSingleCategoryById, getSingleCategoryByName, createCat
 
 router.route("/").get(getAllCategory).post(createCategory)
 router.route("/:id").get(getSingleCategoryById).put(updateCategory).delete(deleteCategory)
-router.route("/:name").get(getSingleCategoryByName)
+router.route("/byname/:name").get(getSingleCategoryByName)
 
 
 module.exports = router;
