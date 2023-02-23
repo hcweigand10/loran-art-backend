@@ -1,9 +1,9 @@
-const { Category } = require("../models");
+const { Category, Art } = require("../models");
 
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
   try {
-    const allCategory = await Category.findAll();
+    const allCategory = await Category.findAll({ include: [{ model: Art }] });
     res.status(200).json(allCategory);
   } catch (err) {
     console.log(err);
@@ -11,12 +11,36 @@ const getAllCategory = async (req, res) => {
   }
 };
 
-const getSingleCategory = async (req, res) => {
+const getSingleCategoryById = async (req, res) => {
   console.log("get single category request");
   try {
-    const singleCategory = await Category.findByPk(req.params.id);
+    const singleCategory = await Category.findByPk(req.params.id, {
+      include: Art,
+    });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this id!" });
+      return;
+    }
+    res.status(200).json(singleCategory);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
+const getSingleCategoryByName = async (req, res) => {
+  console.log("get single category request");
+  try {
+    const singleCategory = await Category.findOne(
+      {
+        where: {
+          name: req.params.name,
+        },
+      },
+      { include: Art }
+    );
+    if (!singleCategory) {
+      res.status(404).json({ message: "No category found with this name!" });
       return;
     }
     res.status(200).json(singleCategory);
@@ -40,7 +64,9 @@ const createCategory = async (req, res) => {
 const updateCategory = async (req, res) => {
   console.log("update category request");
   try {
-    const updatedCategory = await Category.update(req.body, {where: {id: req.params.id}});
+    const updatedCategory = await Category.update(req.body, {
+      where: { id: req.params.id },
+    });
     res.status(200).json(updatedCategory);
   } catch (err) {
     console.log(err);
@@ -51,7 +77,9 @@ const updateCategory = async (req, res) => {
 const deleteCategory = async (req, res) => {
   console.log("delete category request");
   try {
-    const deletedCategory = await Category.destroy({ where: { id: req.params.id } });
+    const deletedCategory = await Category.destroy({
+      where: { id: req.params.id },
+    });
     res.status(200).json(deletedCategory);
   } catch (err) {
     console.log(err);
@@ -59,4 +87,11 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-module.exports = { getAllCategory, getSingleCategory, createCategory, updateCategory, deleteCategory };
+module.exports = {
+  getAllCategory,
+  getSingleCategoryById,
+  getSingleCategoryByName,
+  createCategory,
+  updateCategory,
+  deleteCategory,
+};

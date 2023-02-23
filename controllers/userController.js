@@ -1,5 +1,62 @@
 const { User } = require("../models");
 
+const login = async (req, res) => {
+  console.log("Login attempt");
+  try {
+    const dbUser = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
+    });
+    if(!dbUser){
+      return res.status(403).json({err:"invalid email"})
+  } 
+  if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+      const token = jwt.sign(
+        {
+          email: dbUser.email,
+          id: dbUser.id
+        },
+        // LOCAL:
+        // "porttownsend",
+
+        // DELPOYED:
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "6h"
+        }
+      );
+      res.json({ 
+          token: token, 
+          user: dbUser
+      });
+    } else {
+      res.status(403).json({err: "invalid password"});
+    }
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
+const checkToken = async (req, res) => {
+  const token = req.headers?.authorization?.split(" ").pop()
+    jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+        if (err) {
+            console.log(err);
+            const data = {
+              err: "Token has expired"
+            }
+            res.status(403).json(data);
+          } else {
+            const user = await User.findByPk(data.id)
+            console.log(user)  
+            res.json(user);
+          }
+    })
+}
+
 const getAllUser = async (req, res) => {
   console.log("get all user request");
   try {
@@ -40,7 +97,9 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   console.log("update user request");
   try {
-    const updatedUser = await User.update(req.body, {where: {id: req.params.id}});
+    const updatedUser = await User.update(req.body, {
+      where: { id: req.params.id },
+    });
     res.status(200).json(updatedUser);
   } catch (err) {
     console.log(err);
@@ -59,4 +118,12 @@ const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUser, getSingleUser, createUser, updateUser, deleteUser };
+module.exports = {
+  login,
+  checkToken,
+  getAllUser,
+  getSingleUser,
+  createUser,
+  updateUser,
+  deleteUser,
+};
