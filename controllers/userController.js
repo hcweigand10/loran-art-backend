@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const bcrypt = require("bcrypt")
 
 const login = async (req, res) => {
   console.log("Login attempt");
