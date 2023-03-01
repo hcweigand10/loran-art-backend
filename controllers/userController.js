@@ -99,6 +99,7 @@ const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: { id: req.params.id },
+      individualHooks: true
     });
     res.status(200).json(updatedUser);
   } catch (err) {
