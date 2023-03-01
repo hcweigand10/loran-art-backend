@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
-  console.log("Login attempt");
-  console.log(req)
   try {
     const dbUser = await User.findOne({
       where: {
@@ -44,6 +42,7 @@ const login = async (req, res) => {
 };
 
 const checkToken = async (req, res) => {
+  console.log(req.headers)
   const token = req.headers?.authorization?.split(" ").pop()
     jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
         if (err) {
