@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
   console.log("Login attempt");
+  console.log(req)
   try {
     const dbUser = await User.findOne({
       where: {
