@@ -5,7 +5,7 @@ const login = async (req, res) => {
   try {
     const dbUser = await User.findOne({
       where: {
-        username: req.body.username,
+        email: req.body.email,
       },
     });
     if(!dbUser){
@@ -101,6 +101,9 @@ const updateUser = async (req, res) => {
       where: { id: req.params.id },
       individualHooks: true
     });
+    if (!updatedUser) {
+      res.status(404).json({msg: "No user with that ID"})
+    }
     res.status(200).json(updatedUser);
   } catch (err) {
     console.log(err);
