@@ -25,12 +25,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-app.use(cors({
-  origin: "localhost"
-}))
-app.use(cors({
-  origin: "deployed"
-}))
 
 app.use((req, res, next) => {
   const allowedOrigins = ['http://localhost:3000', 'https://loranscruggs.netlify.app', 'http://loranscruggs.com', 'https://loranscruggs.com' ];
