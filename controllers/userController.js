@@ -42,7 +42,6 @@ const login = async (req, res) => {
 };
 
 const checkToken = async (req, res) => {
-  console.log(req.headers)
   const token = req.headers?.authorization?.split(" ").pop()
     jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
         if (err) {

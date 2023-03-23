@@ -51,8 +51,13 @@ const updateArt = async (req, res) => {
 const deleteArt = async (req, res) => {
   console.log("deleteArt request");
   try {
-    const deletedArt = await Art.destroy({ where: { id: req.params.id } });
-    res.status(200).json(deletedArt);
+    const foundArt = await Art.findByPk(req.params.id);
+    if (foundArt) {
+      const deletedArt = await Art.destroy({ where: { id: req.params.id } });
+      res.status(200).json(deletedArt);
+    } else {
+      res.status(404).json({msg: "No art with that ID!"})
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
