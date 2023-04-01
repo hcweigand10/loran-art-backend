@@ -30,6 +30,10 @@ Art.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    notes: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
     
   },
   {
