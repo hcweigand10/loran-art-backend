@@ -1,6 +1,7 @@
 const { User } = require("../models");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const mailer = require("../utils/nodemailer");
 
 const login = async (req, res) => {
   try {
@@ -9,14 +10,14 @@ const login = async (req, res) => {
         email: req.body.email,
       },
     });
-    if(!dbUser){
-      return res.status(403).json({err:"invalid email"})
-  } 
-  if (bcrypt.compareSync(req.body.password, dbUser.password)) {
+    if (!dbUser) {
+      return res.status(403).json({ err: "invalid email" });
+    }
+    if (bcrypt.compareSync(req.body.password, dbUser.password)) {
       const token = jwt.sign(
         {
           email: dbUser.email,
-          id: dbUser.id
+          id: dbUser.id,
         },
         // LOCAL:
         // "porttownsend",
@@ -24,17 +25,16 @@ const login = async (req, res) => {
         // DELPOYED:
         process.env.JWT_SECRET,
         {
-          expiresIn: "6h"
+          expiresIn: "6h",
         }
       );
-      res.json({ 
-          token: token, 
-          user: dbUser
+      res.json({
+        token: token,
+        user: dbUser,
       });
     } else {
-      res.status(403).json({err: "invalid password"});
+      res.status(403).json({ err: "invalid password" });
     }
-    
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -42,21 +42,21 @@ const login = async (req, res) => {
 };
 
 const checkToken = async (req, res) => {
-  const token = req.headers?.authorization?.split(" ").pop()
-    jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
-        if (err) {
-            console.log(err);
-            const data = {
-              err: "Token has expired"
-            }
-            res.status(403).json(data);
-          } else {
-            const user = await User.findByPk(data.id)
-            console.log(user)  
-            res.json(user);
-          }
-    })
-}
+  const token = req.headers?.authorization?.split(" ").pop();
+  jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+    if (err) {
+      console.log(err);
+      const data = {
+        err: "Token has expired",
+      };
+      res.status(403).json(data);
+    } else {
+      const user = await User.findByPk(data.id);
+      console.log(user);
+      res.json(user);
+    }
+  });
+};
 
 const getAllUser = async (req, res) => {
   console.log("get all user request");
@@ -100,10 +100,10 @@ const updateUser = async (req, res) => {
   try {
     const updatedUser = await User.update(req.body, {
       where: { id: req.params.id },
-      individualHooks: true
+      individualHooks: true,
     });
     if (!updatedUser) {
-      res.status(404).json({msg: "No user with that ID"})
+      res.status(404).json({ msg: "No user with that ID" });
     }
     res.status(200).json(updatedUser);
   } catch (err) {
@@ -123,6 +123,30 @@ const deleteUser = async (req, res) => {
   }
 };
 
+// const sendEmail = async (req, res) => {
+//   console.log("send email");
+//   try {
+//     const response = await mailer.send({
+//       to: "henryweigand10@gmail.com",
+//       from: "henryweigand10@gmail.com",
+//       subject: `loranscruggs.com: New Message from ${req.body.name}`,
+//       html: `<div>
+// <h3>From: <span style={{fontStyle: "italic"}}>${req.body.name}</span></h3>
+// <h3>Email: <span style={{fontStyle: "italic"}}>${req.body.email}</span></h3>
+// <h3>Phone: <span style={{fontStyle: "italic"}}>${req.body.phone}</span></h3>
+// <br/>
+// <h3>Message Body:</h3>
+// <p style={{fontStyle: "italic"}}>${req.body.message}</p>
+// </div>`,
+//     });
+//     console.log(response);
+//     res.status(200).json(response);
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json(err);
+//   }
+// };
+
 module.exports = {
   login,
   checkToken,
@@ -131,4 +155,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  sendEmail,
 };
