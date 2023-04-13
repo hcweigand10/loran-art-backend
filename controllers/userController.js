@@ -123,29 +123,6 @@ const deleteUser = async (req, res) => {
   }
 };
 
-// const sendEmail = async (req, res) => {
-//   console.log("send email");
-//   try {
-//     const response = await mailer.send({
-//       to: "henryweigand10@gmail.com",
-//       from: "henryweigand10@gmail.com",
-//       subject: `loranscruggs.com: New Message from ${req.body.name}`,
-//       html: `<div>
-// <h3>From: <span style={{fontStyle: "italic"}}>${req.body.name}</span></h3>
-// <h3>Email: <span style={{fontStyle: "italic"}}>${req.body.email}</span></h3>
-// <h3>Phone: <span style={{fontStyle: "italic"}}>${req.body.phone}</span></h3>
-// <br/>
-// <h3>Message Body:</h3>
-// <p style={{fontStyle: "italic"}}>${req.body.message}</p>
-// </div>`,
-//     });
-//     console.log(response);
-//     res.status(200).json(response);
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// };
 
 module.exports = {
   login,
@@ -155,5 +132,4 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  sendEmail,
 };
