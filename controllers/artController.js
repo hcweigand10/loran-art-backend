@@ -1,9 +1,9 @@
-const { Art } = require("../models");
+const { Art, Tag } = require("../models");
 
 const getAllArt = async (req, res) => {
   console.log("get all art request");
   try {
-    const allArt = await Art.findAll();
+    const allArt = await Art.findAll({include: Tag});
     res.status(200).json(allArt);
   } catch (err) {
     console.log(err);
@@ -14,7 +14,9 @@ const getAllArt = async (req, res) => {
 const getSingleArt = async (req, res) => {
   console.log("get single art request");
   try {
-    const singleArt = await Art.findByPk(req.params.id);
+    const singleArt = await Art.findByPk(req.params.id, {
+      include: Tag
+    });
     if (!singleArt) {
       res.status(404).json({ message: "No art found with this id!" });
       return;
@@ -30,6 +32,9 @@ const createArt = async (req, res) => {
   console.log("createArt request");
   try {
     const newArt = await Art.create(req.body);
+    if (req.body.tags.length > 0) {
+      await newArt.addTags(req.body.tags)
+    }
     res.status(200).json(newArt);
   } catch (err) {
     console.log(err);
@@ -37,11 +42,36 @@ const createArt = async (req, res) => {
   }
 };
 
+const updateTags = async (req,res) => {
+  console.log("updateTags request");
+  try {
+    const foundArt = await Art.findByPk(req.params.id, {
+      include: Tag
+    });
+    if (foundArt) {
+      const updatedArt = await foundArt.setTags(req.body.tags)
+      res.status(200).json(updatedArt)
+    } else {
+      res.status(404).json({msg: "No art with that ID!"})
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(500).json({msg: err})
+  }
+}
+
 const updateArt = async (req, res) => {
   console.log("updateArt request");
   try {
-    const updatedArt = await Art.update(req.body, {where: {id: req.params.id}});
-    res.status(200).json(updatedArt);
+    const foundArt = await Art.findByPk(req.params.id, {
+      include: Tag
+    });
+    if (foundArt) {
+      const updatedArt = await Art.update(req.body, {where: {id: req.params.id}});
+      res.status(200).json(updatedArt)
+    } else {
+      res.status(404).json({msg: "No art with that ID!"})
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -64,4 +94,4 @@ const deleteArt = async (req, res) => {
   }
 };
 
-module.exports = { getAllArt, getSingleArt, createArt, updateArt, deleteArt };
+module.exports = { getAllArt, getSingleArt, createArt, updateArt, deleteArt, updateTags };
