@@ -14,12 +14,20 @@ Art.init(
       type: DataTypes.STRING,
       allowNull: true
     },
-    size: {
-      type: DataTypes.STRING,
+    height: {
+      type: DataTypes.FLOAT,
       allowNull: false
     },
+    width: {
+      type: DataTypes.FLOAT,
+      allowNull: false
+    },
+    thickness: {
+      type: DataTypes.FLOAT,
+      allowNull: true
+    },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true
     },
     forSale: {
