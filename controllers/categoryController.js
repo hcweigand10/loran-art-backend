@@ -1,4 +1,4 @@
-const { Category, Art } = require("../models");
+const { Category, Art, Tag } = require("../models");
 
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
@@ -13,8 +13,11 @@ const getAllCategory = async (req, res) => {
 
 const getSingleCategoryById = async (req, res) => {
   try {
-    const singleCategory = await Category.findByPk(req.params.id, {
-      include: [{ model: Art }],
+    const singleCategory = await Art.findAll({
+      where: {
+        CategoryId: req.params.id
+      },
+      include: [{ model: Tag }],
     });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this id!" });
@@ -33,7 +36,7 @@ const getSingleCategoryByName = async (req, res) => {
       where: {
         name: req.params.name,
       },
-      include: [{ model: Art }],
+      include: [{ model: Art, include: [{model: Tag}] }],
     });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this name!" });
