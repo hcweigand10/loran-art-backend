@@ -129,7 +129,7 @@ module.exports = {
   checkToken,
   getAllUser,
   getSingleUser,
-  createUser,
+  // createUser,
   updateUser,
   deleteUser,
 };
