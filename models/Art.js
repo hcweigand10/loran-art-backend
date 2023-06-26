@@ -30,6 +30,10 @@ Art.init(
       type: DataTypes.FLOAT,
       allowNull: true
     },
+    size: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     forSale: {
       type: DataTypes.BOOLEAN,
       allowNull: false
@@ -39,6 +43,18 @@ Art.init(
       allowNull: false
     },
     notes: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    hours: {
+      type: DataTypes.FLOAT,
+      allowNull: true
+    },
+    oldPrice: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    date: {
       type: DataTypes.STRING,
       allowNull: true
     }
