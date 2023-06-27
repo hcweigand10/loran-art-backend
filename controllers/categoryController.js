@@ -1,4 +1,5 @@
 const { Category, Art, Tag } = require("../models");
+const categoryData = require("../seeds/categorySeeds")
 
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
@@ -87,6 +88,18 @@ const deleteCategory = async (req, res) => {
   }
 };
 
+const seed = async (req, res) => {
+  console.log("seed categories")
+  try {
+    const categories = await Category.bulkCreate(categoryData)
+    res.status(200).json(categories)
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+    
+  }
+}
+
 module.exports = {
   getAllCategory,
   getSingleCategoryById,
@@ -94,4 +107,5 @@ module.exports = {
   createCategory,
   updateCategory,
   deleteCategory,
+  seed
 };

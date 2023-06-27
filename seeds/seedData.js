@@ -134,7 +134,7 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 14,
+		"id": 15,
 		"title": "plane",
 		"description": "I like this one",
 		"height": 8,
@@ -147,7 +147,7 @@ const data = [
 		"CategoryId": 5,
 	},
 	{
-		"id": 14,
+		"id": 16,
 		"title": "sculpture",
 		"description": "I like this one",
 		"height": 8,
