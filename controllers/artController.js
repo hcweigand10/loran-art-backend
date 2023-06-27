@@ -109,7 +109,7 @@ const seedArt = async (req, res) => {
     } else {
       res.status(500).json({msg: "confirm?"})
     }
-  } catch (error) {
+  } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
