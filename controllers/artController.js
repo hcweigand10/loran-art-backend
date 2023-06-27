@@ -1,5 +1,5 @@
 const { Art, Tag } = require("../models");
-const seedData = require("../seeds/seedData");
+const {seedData} = require("../seeds/seedData");
 
 const getAllArt = async (req, res) => {
   console.log("get all art request");

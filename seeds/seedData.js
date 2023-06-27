@@ -1,4 +1,4 @@
-export default [
+const data = [
 	{
 		"id": 2,
 		"title": "First Piece",
@@ -160,3 +160,5 @@ export default [
 		"CategoryId": 2,
 	}
 ]
+
+module.exports = {data}
