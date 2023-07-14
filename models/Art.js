@@ -11,7 +11,7 @@ Art.init(
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true
     },
     height: {
@@ -43,7 +43,7 @@ Art.init(
       allowNull: false
     },
     notes: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true
     },
     hours: {

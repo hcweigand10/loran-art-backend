@@ -1,17 +1,32 @@
-const {Tag, Category} = require("../models")
+const {Tag, Category, Art} = require("../models")
+const sequelize = require('../config/connection');
+const data =  require("./seedData")
 
 const categories = [
-  {name: "Small Walls"},
-  {name: "Medium Walls"},
-  {name: "Large Walls"},
+  {name: "Wall Art"},
   {name: "Sculptures"},
   {name: "Toys"},
   {name: "Whistles"},
-  // {name: ""},
+  {name: "Planes"},
+  {name: "Wholesale"},
+
 ]
 
-const seedTags = () => {
+const tags = [
+  {name: "Nature"},
+  {name: "Water"},
+  {name: "Insects"},
+  {name: "Trees"},
+  {name: "Animals"},
+]
 
+const seedTags = async () => {
+  try {
+    await Tag.bulkCreate(tags)
+    console.log("Tags seeded")
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const seedCategories = async () => {
@@ -23,4 +38,22 @@ const seedCategories = async () => {
   }
 }
 
-seedCategories()
+const seedArt = async () => {
+  try {
+    await Art.bulkCreate(data)
+    console.log("Art seeded")
+  } catch (error) {
+    console.error(error)
+  }
+
+}
+
+const init = async () => {
+  await sequelize.sync({force:true})
+  await seedCategories()
+  await seedTags()
+  await seedArt()
+  return
+}
+
+init()

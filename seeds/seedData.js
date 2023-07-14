@@ -1,3 +1,5 @@
+const { CHAR } = require("sequelize")
+
 const data = [
 	{
 		"id": 2,
@@ -136,7 +138,7 @@ const data = [
 	{
 		"id": 15,
 		"title": "plane",
-		"description": "I like this one",
+		"description": "I like this one \n i like it a lot!!",
 		"height": 8,
 		"width": 10,
 		"thickness": 4,
