@@ -45,7 +45,6 @@ app.use("/api", apiRoutes)
 
 
 sequelize.sync({force:false}).then(() => {
-  seed()
   app.listen(PORT, () => {
       console.log('App listening on PORT ' + PORT);
   });
