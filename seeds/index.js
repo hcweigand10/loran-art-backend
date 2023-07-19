@@ -62,7 +62,7 @@ const seedArt = async () => {
 
 const seedUsers = async () => {
   try {
-    await User.bulkCreate(users, {hooks: true})
+    await User.bulkCreate(users, {individualHooks: true})
     console.log("Users seeded")
   } catch (error) {
     console.error(error)
