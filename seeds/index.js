@@ -1,4 +1,4 @@
-const {Tag, Category, Art} = require("../models")
+const {Tag, Category, Art, User} = require("../models")
 const sequelize = require('../config/connection');
 const data =  require("./seedData")
 
@@ -18,6 +18,19 @@ const tags = [
   {name: "Insects"},
   {name: "Trees"},
   {name: "Animals"},
+]
+
+const users = [
+  {
+    name: "Henry",
+    email: "henryweigand10@gmail.com",
+    password: "password"
+  },
+  {
+    name: "Loran",
+    email: "loranscruggs8@gmail.com",
+    password: "password"
+  }
 ]
 
 const seedTags = async () => {
@@ -45,7 +58,15 @@ const seedArt = async () => {
   } catch (error) {
     console.error(error)
   }
+}
 
+const seedUsers = async () => {
+  try {
+    await User.bulkCreate(users)
+    console.log("Users seeded")
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 const init = async () => {
@@ -53,7 +74,10 @@ const init = async () => {
   await seedCategories()
   await seedTags()
   await seedArt()
+  await seedUsers()
   return
 }
 
 init()
+
+module.exports = init
