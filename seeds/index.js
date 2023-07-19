@@ -62,7 +62,7 @@ const seedArt = async () => {
 
 const seedUsers = async () => {
   try {
-    await User.bulkCreate(users)
+    await User.bulkCreate(users, {hooks: true})
     console.log("Users seeded")
   } catch (error) {
     console.error(error)
@@ -70,7 +70,7 @@ const seedUsers = async () => {
 }
 
 const init = async () => {
-  // await sequelize.sync({force:true})
+  await sequelize.sync({force:true})
   await seedCategories()
   await seedTags()
   await seedArt()
