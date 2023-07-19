@@ -43,10 +43,10 @@ app.options('*', (req,res) => { res.sendStatus(200) });
 
 app.use("/api", apiRoutes)
 
-seed()
+// seed()
 
-// sequelize.sync({force:false}).then(() => {
-//   app.listen(PORT, () => {
-//       console.log('App listening on PORT ' + PORT);
-//   });
-// });
+sequelize.sync({force:false}).then(() => {
+  app.listen(PORT, () => {
+      console.log('App listening on PORT ' + PORT);
+  });
+});
