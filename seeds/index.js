@@ -78,6 +78,5 @@ const init = async () => {
   return
 }
 
-init()
 
 module.exports = init
