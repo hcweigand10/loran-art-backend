@@ -70,7 +70,7 @@ const seedUsers = async () => {
 }
 
 const init = async () => {
-  await sequelize.sync({force:true})
+  // await sequelize.sync({force:true})
   await seedCategories()
   await seedTags()
   await seedArt()
