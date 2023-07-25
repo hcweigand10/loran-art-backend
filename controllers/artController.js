@@ -71,9 +71,6 @@ const updateArt = async (req, res) => {
       const updatedArt = await Art.update(req.body, {
         where: { id: req.params.id },
       });
-      if (req.body.tags.length > 0) {
-        updatedArt.setTags(req.body.tags);
-      }
       res.status(200).json(updatedArt);
     } else {
       res.status(404).json({ msg: "No art with that ID!" });
