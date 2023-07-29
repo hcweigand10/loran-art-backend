@@ -1,26 +1,12 @@
 const express = require('express');
-const path = require('path');
 const PORT = process.env.PORT || 3001;
 const app = express();
-const session = require("express-session")
 const sequelize = require('./config/connection');
-// const seed = require("./seeds/index")
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 
 
 const apiRoutes = require("./routes")
 
-// const sess = {
-//   secret: 'porttownsend',
-//   cookie: {maxAge: 12000000},
-//   resave: false,
-//   saveUninitialized: true,
-//   store: new SequelizeStore({
-//     db: sequelize
-//   })
-// };
-
-// app.use(session(sess))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -44,7 +30,7 @@ app.options('*', (req,res) => { res.sendStatus(200) });
 app.use("/api", apiRoutes)
 
 
-sequelize.sync({force:true}).then(() => {
+sequelize.sync({force:false}).then(() => {
   app.listen(PORT, () => {
       console.log('App listening on PORT ' + PORT);
   });
