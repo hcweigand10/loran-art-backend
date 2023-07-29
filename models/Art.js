@@ -57,7 +57,20 @@ Art.init(
     date: {
       type: DataTypes.STRING,
       allowNull: true
-    }
+    },
+    sortPriority: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    linkUrl: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    linkText: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     
   },
   {

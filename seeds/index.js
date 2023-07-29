@@ -75,8 +75,10 @@ const init = async () => {
   await seedTags()
   await seedArt()
   await seedUsers()
-  return
+  process.exit(0)
 }
+
+init()
 
 
 module.exports = init

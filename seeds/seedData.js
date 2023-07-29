@@ -2,7 +2,6 @@ const { CHAR } = require("sequelize")
 
 const data = [
 	{
-		"id": 2,
 		"title": "First Piece",
 		"description": "Trying something new",
 		"height": 3,
@@ -15,7 +14,6 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 3,
 		"title": "Dog Bone",
 		"description": "This pices is made from tincan, bottlecaps and ulpostry nails mounted on 3/4\" plywood",
 		"height": 8,
@@ -28,7 +26,6 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 4,
 		"title": "third Piece",
 		"description": "medium description the quick brown fox jumped",
 		"height": 19,
@@ -41,7 +38,6 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 6,
 		"title": "dsfg",
 		"description": "sdfg",
 		"height": 2,
@@ -54,7 +50,6 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 8,
 		"title": "Bi Planes Oranments",
 		"description": "Tin cans",
 		"height": 4,
@@ -67,7 +62,6 @@ const data = [
 		"CategoryId": 3
 	},
 	{
-		"id": 9,
 		"title": "Rise Coffee",
 		"description": "Coffee, Chicken, Triangl, Text, Rise, Farm",
 		"height": 14,
@@ -81,7 +75,6 @@ const data = [
     "date": "4/3/2019"
 	},
 	{
-		"id": 10,
 		"title": "Fish Eye",
 		"description": "Tin can, bottlecaps, nails on 3/4\" Plywood",
 		"height": 6,
@@ -95,7 +88,6 @@ const data = [
     "date": "June 2021"
 	},
 	{
-		"id": 12,
 		"title": "upload picture from insta",
 		"description": "",
 		"height": 18,
@@ -109,7 +101,6 @@ const data = [
     "oldPrice": 25
 	},
 	{
-		"id": 13,
 		"title": "Toy #2",
 		"description": "super cool toy",
 		"height": 3,
@@ -123,7 +114,6 @@ const data = [
     "hours": 4
 	},
 	{
-		"id": 14,
 		"title": "new piece",
 		"description": "I like this one",
 		"height": 8,
@@ -136,7 +126,6 @@ const data = [
 		"CategoryId": 1,
 	},
 	{
-		"id": 15,
 		"title": "plane",
 		"description": "I like this one \n i like it a lot!!",
 		"height": 8,
@@ -149,7 +138,6 @@ const data = [
 		"CategoryId": 5,
 	},
 	{
-		"id": 16,
 		"title": "sculpture",
 		"description": "I like this one",
 		"height": 8,
@@ -159,6 +147,39 @@ const data = [
 		"forSale": true,
 		"image": "https://res.cloudinary.com/dz815dbbu/image/upload/v1686450560/qih9lbjqgbhxswv9lhbv.jpg",
 		"notes": "blau blau blau",
+    "linkText": "hey",
+    "linkUrl": "https://reddit.com",
+    "sortPriority": 4,
+		"CategoryId": 2,
+	}, 
+	{
+		"title": "roboto",
+		"description": "I like this one \n I like it even more",
+		"height": 8,
+		"width": 10,
+		"thickness": 4,
+		"price": 100,
+		"forSale": true,
+		"image": "https://res.cloudinary.com/dz815dbbu/image/upload/v1685398630/pwzlakqca2l3rp089enk.jpg",
+		"notes": "blau blau blau",
+    "linkText": "heynow",
+    "linkUrl": "https://mariners.com",
+    // "sortPriority": 4,
+		"CategoryId": 2,
+	},
+	{
+		"title": "Senor",
+		"description": "I like this one \n\n I like it the most",
+		"height": 8,
+		"width": 10,
+		"thickness": 4,
+		"price": 100,
+		"forSale": true,
+		"image": "https://res.cloudinary.com/dz815dbbu/image/upload/v1682539288/sana4il95xeuxaopmfbn.jpg",
+		"notes": "blau blau blau",
+    // "linkText": "heynownow",
+    "linkUrl": "https://etsy.com",
+    "sortPriority": 2,
 		"CategoryId": 2,
 	}
 ]
