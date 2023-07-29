@@ -1,4 +1,3 @@
-const { CHAR } = require("sequelize")
 
 const data = [
 	{

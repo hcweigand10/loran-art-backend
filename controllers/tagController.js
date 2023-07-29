@@ -1,4 +1,5 @@
 const { Tag, Art } = require("../models");
+const { tags } = require("../seeds");
 
 const getAllTag = async (req, res) => {
   console.log("get all tag request");
@@ -85,6 +86,17 @@ const deleteTag = async (req, res) => {
   }
 };
 
+const seedTags = async (req,res) => {
+  console.log("seed tag request");
+  try {
+    const tagSeeds = await Tag.bulkCreate(tags);
+    res.status(200).json(tagSeeds);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+
 module.exports = {
   getAllTag,
   getSingleTagById,
@@ -92,4 +104,5 @@ module.exports = {
   createTag,
   updateTag,
   deleteTag,
+  seedTags
 };

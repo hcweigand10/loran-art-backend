@@ -2,6 +2,7 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailer = require("../utils/nodemailer");
+const { users } = require("../seeds");
 
 const login = async (req, res) => {
   try {
@@ -123,6 +124,17 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const seedUsers = async (req,res) => {
+  console.log("seed tag request");
+  try {
+    const userSeeds = await User.bulkCreate(users);
+    res.status(200).json(userSeeds);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+
 
 module.exports = {
   login,
@@ -132,4 +144,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  seedUsers
 };
