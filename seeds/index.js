@@ -78,7 +78,7 @@ const init = async () => {
   process.exit(0)
 }
 
-init()
+// init()
 
 
 module.exports = init
