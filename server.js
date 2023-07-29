@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 const session = require("express-session")
 const sequelize = require('./config/connection');
-const seed = require("./seeds/index")
+// const seed = require("./seeds/index")
 // const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
@@ -43,9 +43,8 @@ app.options('*', (req,res) => { res.sendStatus(200) });
 
 app.use("/api", apiRoutes)
 
-seed()
 
-sequelize.sync({force:false}).then(() => {
+sequelize.sync({force:true}).then(() => {
   app.listen(PORT, () => {
       console.log('App listening on PORT ' + PORT);
   });
