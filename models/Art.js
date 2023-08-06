@@ -22,7 +22,7 @@ Art.init(
       type: DataTypes.FLOAT,
       allowNull: false
     },
-    thickness: {
+    depth: {
       type: DataTypes.FLOAT,
       allowNull: true
     },
@@ -34,7 +34,7 @@ Art.init(
       type: DataTypes.STRING,
       allowNull: true
     },
-    forSale: {
+    web: {
       type: DataTypes.BOOLEAN,
       allowNull: false
     },
@@ -50,28 +50,51 @@ Art.init(
       type: DataTypes.FLOAT,
       allowNull: true
     },
-    oldPrice: {
+    old_price: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    date: {
+    date_created: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    sortPriority: {
+    web_sort: {
       type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue: 0
     },
-    linkUrl: {
+    link_url: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    linkText: {
+    link_text: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    mdk: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    sold: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    sold_date: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    sold_location: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    history: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
   },
   {
     sequelize,

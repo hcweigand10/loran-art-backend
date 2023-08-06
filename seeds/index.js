@@ -20,18 +20,6 @@ const tags = [
   {name: "Animals"},
 ]
 
-const users = [
-  {
-    name: "Henry",
-    email: "henryweigand10@gmail.com",
-    password: "password"
-  },
-  {
-    name: "Loran",
-    email: "loranscruggs8@gmail.com",
-    password: "password"
-  }
-]
 
 const seedTags = async () => {
   try {
