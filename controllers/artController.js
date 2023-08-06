@@ -101,6 +101,7 @@ const seedArt = async (req, res) => {
   console.log("seed art");
   try {
     if (req.body.seeds.length>0) {
+      await Art.sync({force: true})
       const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
     } else {
