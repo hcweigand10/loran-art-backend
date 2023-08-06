@@ -69,4 +69,4 @@ const init = async () => {
 // init()
 
 
-module.exports = {users, tags, categories}
+module.exports = { tags, categories}
