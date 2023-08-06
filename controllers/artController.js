@@ -100,11 +100,11 @@ const deleteArt = async (req, res) => {
 const seedArt = async (req, res) => {
   console.log("seed art");
   try {
-    if (req.body.confirm) {
-      const art = await Art.bulkCreate(seedData);
+    if (req.body.seeds.length>0) {
+      const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
     } else {
-      res.status(500).json({msg: "confirm?"})
+      res.status(500).json({msg: "no data"})
     }
   } catch (err) {
     console.log(err);
