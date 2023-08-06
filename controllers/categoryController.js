@@ -16,7 +16,8 @@ const getSingleCategoryById = async (req, res) => {
   try {
     const singleCategory = await Art.findAll({
       where: {
-        CategoryId: req.params.id
+        CategoryId: req.params.id,
+        web: true
       },
       include: [{ model: Tag }],
     });

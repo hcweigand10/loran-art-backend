@@ -16,11 +16,11 @@ Art.init(
     },
     height: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     width: {
       type: DataTypes.FLOAT,
-      allowNull: false
+      allowNull: true
     },
     depth: {
       type: DataTypes.FLOAT,
@@ -40,7 +40,7 @@ Art.init(
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     notes: {
       type: DataTypes.TEXT,
