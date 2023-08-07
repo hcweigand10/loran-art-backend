@@ -101,7 +101,7 @@ const seedArt = async (req, res) => {
   console.log("seed art");
   try {
     if (req.body.seeds.length>0) {
-      await ArtTag.destroy({where: {}, truncate: true})
+      await ArtTag.destroy({where: {}})
       await Art.destroy({truncate: true, cascade: false})
       const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
