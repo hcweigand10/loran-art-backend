@@ -13,7 +13,7 @@ router.use("/users", userRoutes)
 router.post("/sync", async (req,res) => {
   try {
     if (req.body.confirm) {
-      await sequelize.sycn({force:true})
+      await sequelize.sync({force:true})
       res.status(200).send("sync complete")
     }
   } catch (error) {
