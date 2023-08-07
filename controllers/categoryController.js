@@ -4,7 +4,12 @@ const { categories } = require("../seeds");
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
   try {
-    const allCategory = await Category.findAll({ include: [{ model: Art }] });
+    const allCategory = await Category.findAll({
+      include: [{ model: Art }],
+      where: {
+        web: true,
+      },
+    });
     res.status(200).json(allCategory);
   } catch (err) {
     console.log(err);
@@ -17,7 +22,7 @@ const getSingleCategoryById = async (req, res) => {
     const singleCategory = await Art.findAll({
       where: {
         CategoryId: req.params.id,
-        web: true
+        web: true,
       },
       include: [{ model: Tag }],
     });
@@ -38,7 +43,7 @@ const getSingleCategoryByName = async (req, res) => {
       where: {
         name: req.params.name,
       },
-      include: [{ model: Art, include: [{model: Tag}] }],
+      include: [{ model: Art, include: [{ model: Tag }] }],
     });
     if (!singleCategory) {
       res.status(404).json({ message: "No category found with this name!" });
@@ -89,8 +94,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-
-const seedCategories = async (req,res) => {
+const seedCategories = async (req, res) => {
   console.log("seed tag request");
   try {
     const categorySeeds = await Category.bulkCreate(categories);
@@ -99,7 +103,7 @@ const seedCategories = async (req,res) => {
     console.log(err);
     res.status(500).json(err);
   }
-}
+};
 
 module.exports = {
   getAllCategory,
@@ -108,5 +112,5 @@ module.exports = {
   createCategory,
   updateCategory,
   deleteCategory,
-  seedCategories
+  seedCategories,
 };
