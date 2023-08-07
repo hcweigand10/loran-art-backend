@@ -44,7 +44,6 @@ const getSingleCategoryByName = async (req, res) => {
       res.status(404).json({ message: "No category found with this name!" });
       return;
     }
-    console.log(singleCategory);
     res.status(200).json(singleCategory);
   } catch (err) {
     console.log(err);
