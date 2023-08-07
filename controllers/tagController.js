@@ -109,7 +109,7 @@ const deleteTag = async (req, res) => {
 const seedTags = async (req,res) => {
   console.log("seed tag request");
   try {
-    await Tag.sync({truncate: true})
+    await Tag.sync({truncate: true, force: true})
     const tagSeeds = await Tag.bulkCreate(req.body.tags);
     res.status(200).json(tagSeeds);
   } catch (err) {
