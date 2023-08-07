@@ -1,3 +1,4 @@
+const sequelize = require("../config/connection");
 const { Art, Tag, ArtTag } = require("../models");
 const seedData = require("../seeds/seedData");
 
@@ -101,8 +102,10 @@ const seedArt = async (req, res) => {
   console.log("seed art");
   try {
     if (req.body.seeds.length>0) {
-      await ArtTag.destroy({where: {}})
-      await Art.destroy({where: {}})
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
+      await sequelize.query("TRUNCATE TABLE art_tags");
+      await sequelize.query("TRUNCATE TABLE arts");
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 1");
       const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
     } else {
