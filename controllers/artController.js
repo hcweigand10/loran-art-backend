@@ -1,4 +1,4 @@
-const { Art, Tag } = require("../models");
+const { Art, Tag, ArtTag } = require("../models");
 const seedData = require("../seeds/seedData");
 
 const getAllArt = async (req, res) => {
@@ -101,6 +101,7 @@ const seedArt = async (req, res) => {
   console.log("seed art");
   try {
     if (req.body.seeds.length>0) {
+      await ArtTag.sync({force: true})
       await Art.sync({force: true})
       const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
