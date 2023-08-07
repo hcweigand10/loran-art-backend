@@ -109,9 +109,16 @@ const deleteTag = async (req, res) => {
 const seedTags = async (req,res) => {
   console.log("seed tag request");
   try {
-    await Tag.sync({truncate: true, force: true})
-    const tagSeeds = await Tag.bulkCreate(req.body.tags);
-    res.status(200).json(tagSeeds);
+    if (req.body.tags.length > 0) {
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
+      await sequelize.query("TRUNCATE TABLE tags");
+      await sequelize.query("TRUNCATE TABLE tags");
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 1");
+      const tags = await Tag.bulkCreate(req.body.tags);
+      res.status(200).json(tags);
+    } else {
+      res.status(500).json({ msg: "no data" });
+    }
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
