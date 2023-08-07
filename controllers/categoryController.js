@@ -4,11 +4,10 @@ const { categories } = require("../seeds");
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
   try {
-    const allCategory = await Category.findAll({
-      include: [{ model: Art }],
+    const allCategory = await Art.findAll({
       where: {
         web: true,
-      },
+      }
     });
     res.status(200).json(allCategory);
   } catch (err) {
