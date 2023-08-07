@@ -60,7 +60,7 @@ const checkForTag = async (req, res) => {
       res.status(200).json({ exists: false });
       return;
     } else {
-      res.status(200).json({ exists: true });
+      res.status(200).json({ exists: true, tagId: singleTag.id });
       return;
     }
   } catch (err) {
