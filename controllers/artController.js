@@ -75,7 +75,7 @@ const updateTagsByMdk = async (req, res) => {
       const updatedArt = await foundArt.setTags(req.body.tags);
       res.status(200).json(updatedArt);
     } else {
-      res.status(404).json({ msg: "No art with that ID!" });
+      res.status(404).json({ msg: "No art with that mdk!" });
     }
   } catch (err) {
     console.log(err);

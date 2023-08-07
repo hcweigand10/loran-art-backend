@@ -49,6 +49,26 @@ const getSingleTagByName = async (req, res) => {
   }
 };
 
+const checkForTag = async (req, res) => {
+  try {
+    const singleTag = await Tag.findOne({
+      where: {
+        name: req.params.name,
+      },
+    });
+    if (!singleTag) {
+      res.status(200).json({ exists: false });
+      return;
+    } else {
+      res.status(200).json({ exists: true });
+      return;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
 const createTag = async (req, res) => {
   console.log("create tag request");
   try {
@@ -101,6 +121,7 @@ module.exports = {
   getAllTag,
   getSingleTagById,
   getSingleTagByName,
+  checkForTag,
   createTag,
   updateTag,
   deleteTag,
