@@ -62,6 +62,27 @@ const updateTags = async (req, res) => {
   }
 };
 
+const updateTagsByMdk = async (req, res) => {
+  console.log("updateTagsMdk request");
+  try {
+    const foundArt = await Art.findOne(
+      { where: { mdk: req.params.mdk } },
+      {
+        include: Tag,
+      }
+    );
+    if (foundArt) {
+      const updatedArt = await foundArt.setTags(req.body.tags);
+      res.status(200).json(updatedArt);
+    } else {
+      res.status(404).json({ msg: "No art with that ID!" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: err });
+  }
+};
+
 const updateArt = async (req, res) => {
   console.log("updateArt request");
   try {
@@ -101,7 +122,7 @@ const deleteArt = async (req, res) => {
 const seedArt = async (req, res) => {
   console.log("seed art");
   try {
-    if (req.body.seeds.length>0) {
+    if (req.body.seeds.length > 0) {
       await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
       await sequelize.query("TRUNCATE TABLE art_tags");
       await sequelize.query("TRUNCATE TABLE arts");
@@ -109,7 +130,7 @@ const seedArt = async (req, res) => {
       const art = await Art.bulkCreate(req.body.seeds);
       res.status(200).json(art);
     } else {
-      res.status(500).json({msg: "no data"})
+      res.status(500).json({ msg: "no data" });
     }
   } catch (err) {
     console.log(err);
@@ -122,6 +143,7 @@ module.exports = {
   getSingleArt,
   createArt,
   updateArt,
+  updateTagsByMdk,
   deleteArt,
   updateTags,
   seedArt,
