@@ -6,6 +6,11 @@ class Art extends Model {}
 
 Art.init(
   {
+    mdk: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -73,10 +78,6 @@ Art.init(
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: true
-    },
-    mdk: {
-      type: DataTypes.INTEGER,
       allowNull: true
     },
     sold: {
