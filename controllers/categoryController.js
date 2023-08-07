@@ -4,11 +4,7 @@ const { categories } = require("../seeds");
 const getAllCategory = async (req, res) => {
   console.log("get all category request");
   try {
-    const allCategory = await Art.findAll({
-      where: {
-        web: true,
-      }
-    });
+    const allCategory = await Category.findAll();
     res.status(200).json(allCategory);
   } catch (err) {
     console.log(err);
