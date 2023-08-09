@@ -154,6 +154,21 @@ const seedArtTags = async (req, res) => {
   }
 };
 
+const createOneArtTag = async () => {
+  console.log("create one artTag");
+  try {
+    if (req.body.art_mdk && req.body.tag_id) {
+      const result = await ArtTag.create(req.body);
+      res.status(200).json(result);
+    } else {
+      res.status(500).json({ msg: "no data" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+
 
 
 module.exports = {
@@ -165,5 +180,6 @@ module.exports = {
   deleteArt,
   updateTags,
   seedArt,
-  seedArtTags
+  seedArtTags,
+  createOneArtTag
 };
