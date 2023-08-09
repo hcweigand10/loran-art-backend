@@ -158,6 +158,7 @@ const createOneArtTag = async (req,res) => {
   console.log("create one artTag");
   try {
     if (req.body.art_mdk && req.body.tag_id) {
+      console.log(req.body)
       const result = await ArtTag.create(req.body);
       res.status(200).json(result);
     } else {
