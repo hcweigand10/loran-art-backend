@@ -91,7 +91,7 @@ const updateArt = async (req, res) => {
     });
     if (foundArt) {
       const updatedArt = await Art.update(req.body, {
-        where: { id: req.params.id },
+        where: { mdk: req.params.id },
       });
       res.status(200).json(updatedArt);
     } else {
@@ -108,7 +108,7 @@ const deleteArt = async (req, res) => {
   try {
     const foundArt = await Art.findByPk(req.params.id);
     if (foundArt) {
-      const deletedArt = await Art.destroy({ where: { id: req.params.id } });
+      const deletedArt = await Art.destroy({ where: { mdk: req.params.id } });
       res.status(200).json(deletedArt);
     } else {
       res.status(404).json({ msg: "No art with that ID!" });
