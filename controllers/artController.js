@@ -154,7 +154,7 @@ const seedArtTags = async (req, res) => {
   }
 };
 
-const createOneArtTag = async () => {
+const createOneArtTag = async (req,res) => {
   console.log("create one artTag");
   try {
     if (req.body.art_mdk && req.body.tag_id) {
