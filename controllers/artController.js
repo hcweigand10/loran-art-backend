@@ -142,6 +142,7 @@ const seedArtTags = async (req, res) => {
   console.log("seed artTags");
   try {
     if (req.body.seeds.length > 0) {
+      console.log(req.body.seeds)
       const result = await ArtTag.bulkCreate(req.body.seeds);
       res.status(200).json(result);
     } else {
