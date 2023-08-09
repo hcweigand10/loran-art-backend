@@ -15,7 +15,7 @@ Tag.init(
   {
     sequelize,
     timestamps: false,
-    underscored: true,
+    underscored: false,
     modelName: 'Tag'
   }
 );

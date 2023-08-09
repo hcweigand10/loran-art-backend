@@ -142,7 +142,7 @@ const seedArtTags = async (req, res) => {
   console.log("seed artTags");
   try {
     if (req.body.seeds.length > 0) {
-      console.log(req.body.seeds)
+      console.log(req.body.seeds);
       const result = await ArtTag.bulkCreate(req.body.seeds);
       res.status(200).json(result);
     } else {
@@ -154,11 +154,11 @@ const seedArtTags = async (req, res) => {
   }
 };
 
-const createOneArtTag = async (req,res) => {
+const createOneArtTag = async (req, res) => {
   console.log("create one artTag");
   try {
-    if (req.body.art_mdk && req.body.tag_id) {
-      console.log(req.body)
+    if (req.body.ArtMdk && req.body.TagId) {
+      console.log(req.body);
       const result = await ArtTag.create(req.body);
       res.status(200).json(result);
     } else {
@@ -168,9 +168,7 @@ const createOneArtTag = async (req,res) => {
     console.log(err);
     res.status(500).json(err);
   }
-}
-
-
+};
 
 module.exports = {
   getAllArt,
@@ -182,5 +180,5 @@ module.exports = {
   updateTags,
   seedArt,
   seedArtTags,
-  createOneArtTag
+  createOneArtTag,
 };
