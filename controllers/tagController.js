@@ -1,6 +1,5 @@
 const sequelize = require("../config/connection");
 const { Tag, Art } = require("../models");
-const { tags } = require("../seeds");
 
 const getAllTag = async (req, res) => {
   console.log("get all tag request");

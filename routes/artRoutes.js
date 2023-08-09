@@ -7,7 +7,7 @@ router.route("/seed").post(seedArt)
 router.route("/:id").get(getSingleArt).put(updateArt).delete(deleteArt)
 router.route("/tags/:id").put(updateTags)
 router.route("/tags/seed").post(seedArtTags)
-router.route("/tags").post(seedArtTags)
+router.route("/tags").post(createOneArtTag)
 // router.route("/tags/mdk/:mdk").put(updateTagsByMdk)
 
 
