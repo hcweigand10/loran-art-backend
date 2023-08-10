@@ -13,7 +13,9 @@ router.use("/users", userRoutes)
 router.post("/sync", async (req,res) => {
   try {
     if (req.body.confirm) {
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 0")
       await sequelize.sync({force:true})
+      await sequelize.query("SET FOREIGN_KEY_CHECKS = 1")
       res.status(200).send("sync complete")
     }
   } catch (error) {
