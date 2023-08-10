@@ -124,7 +124,7 @@ const seedArt = async (req, res) => {
   try {
     if (req.body.seeds.length > 0) {
       await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
-      await sequelize.query("TRUNCATE TABLE art_tags");
+      await sequelize.query("TRUNCATE TABLE artTags");
       await sequelize.query("TRUNCATE TABLE arts");
       await sequelize.query("SET FOREIGN_KEY_CHECKS = 1");
       const art = await Art.bulkCreate(req.body.seeds);
@@ -142,10 +142,10 @@ const seedArtTags = async (req, res) => {
   console.log("seed artTags");
   try {
     if (req.body.seeds.length > 0) {
-      console.log(req.body.seeds);
       await sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
-      await sequelize.query("TRUNCATE TABLE art_tags");
+      await sequelize.query("TRUNCATE TABLE artTags");
       await sequelize.query("SET FOREIGN_KEY_CHECKS = 1");
+      const
       const result = await ArtTag.bulkCreate(req.body.seeds);
       res.status(200).json(result);
     } else {
