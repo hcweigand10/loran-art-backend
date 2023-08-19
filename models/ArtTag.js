@@ -12,7 +12,7 @@ ArtTag.init(
     sequelize,
     timestamps: false,
     underscored: false,
-    modelName: 'ArtTag'
+    modelName: 'arttag'
   }
 );
 

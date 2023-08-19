@@ -101,7 +101,7 @@ Art.init(
     sequelize,
     timestamps: false,
     underscored: false,
-    modelName: 'Art'
+    modelName: 'art'
   }
 );
 

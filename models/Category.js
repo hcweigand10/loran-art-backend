@@ -15,7 +15,7 @@ Category.init(
     sequelize,
     timestamps: false,
     underscored: false,
-    modelName: 'Category'
+    modelName: 'category'
   }
 );
 
