@@ -18,4 +18,5 @@ if (false) {
   );
 }
 
+
 module.exports = sequelize;
