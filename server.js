@@ -14,7 +14,7 @@ app.use(express.static('public'));
 
 
 app.use((req, res, next) => {
-  const allowedOrigins = ['http://localhost:3000', "https://loranscruggs.netlify.app"]; // add deployed URL here
+  const allowedOrigins = ['http://localhost:3000', "https://loranscruggs.netlify.app", "https://www.loranscruggs.com", "https://loranscruggs.com"]; // add deployed URL here
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
        res.setHeader('Access-Control-Allow-Origin', origin);
